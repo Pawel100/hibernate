@@ -36,6 +36,7 @@ public class Main {
 
 	private void executeQueries() {
 		query0();
+		//addNewData();
 		// query1();
 		// query2();
 		// query3();
@@ -122,9 +123,14 @@ public class Main {
 		newStudent.setSurname("Tr¹balski");
 		newStudent.setPesel("12345678");
 		
+		Teacher newTeacher = new Teacher();
+		newTeacher.setName("Teacher One");
+		newTeacher.setSubject("W-F");
+		
+		newTeacher.addTeacher(newTeacher);
 		newClass.addStudent(newStudent);
 		newSchool.addClass(newClass);
-		
+				
 		Transaction transaction = session.beginTransaction();
 		session.save(newSchool);
 		transaction.commit();

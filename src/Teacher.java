@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -8,60 +9,73 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
-public class Teacher implements java.io.Serializable{
-	
+public class Teacher implements java.io.Serializable {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@Column
-    private String name;
-	
+	private String name;
+
 	@Column
-    private String subject;
+	private String subject;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "class_id")
+	private Set<SchoolClass> classes;
+
+	private Set<Teacher> teachers;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="class_id")
-    private Set<SchoolClass> classes;
-	
+	public Teacher() {
+		teachers = new HashSet<Teacher>();
+	}
+
+	public void setTeacher(Set<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+
+	public void addTeacher(Teacher newTeacher) {
+		teachers.add(newTeacher);
+	}
+
 	public long getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getSubject() {
-        return subject;
-    }
+	public String getSubject() {
+		return subject;
+	}
 
-    public Set<SchoolClass> getClasses() {
-        return classes;
-    }
+	public Set<SchoolClass> getClasses() {
+		return classes;
+	}
 
-    public void setId(long id) {
+	public void setId(long id) {
 
-        this.id = id;
-    }
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 
-    public void setClasses(Set<SchoolClass> classes) {
-        this.classes = classes;
-    }
-    
-    @Override
-    public String toString() {
-        return "Teacher{" + "id=" + id + ", name='" + name + '\'' + ", subject='" + subject + '\'' + ", classes=" + classes + '}';
-    }
-    
-    
+	public void setClasses(Set<SchoolClass> classes) {
+		this.classes = classes;
+	}
+
+	@Override
+	public String toString() {
+		return "Teacher{" + "id=" + id + ", name='" + name + '\'' + ", subject='" + subject + '\'' + ", classes="
+				+ classes + '}';
+	}
 
 }
