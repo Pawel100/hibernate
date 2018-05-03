@@ -12,6 +12,8 @@
 		<property name="connection.username"></property>
 		<property name="connection.password"></property>
 	
-		<mapping resource="School.hbm.xml"/>
+		<mapping class="School"/>
+		<mapping class="SchoolClass"/>
+		<mapping class="Student"/>
 	</session-factory>
 </hibernate-configuration>
