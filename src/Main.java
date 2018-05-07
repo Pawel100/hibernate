@@ -4,7 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -113,6 +115,7 @@ public class Main {
 		newSchool.setName("Uniwersytet Warszawski");
 		newSchool.setAddress("ul. Kasztanowa 15, Warszawa");
 		
+		Set<SchoolClass> newClasses = new HashSet<SchoolClass>();
 		SchoolClass newClass = new SchoolClass();
 		newClass.setProfile("mat-fiz");
 		newClass.setStartYear(2015);
@@ -126,6 +129,7 @@ public class Main {
 		Teacher newTeacher = new Teacher();
 		newTeacher.setName("Teacher One");
 		newTeacher.setSubject("W-F");
+		newTeacher.setClasses(newClasses);
 		
 		newTeacher.addTeacher(newTeacher);
 		newClass.addStudent(newStudent);
